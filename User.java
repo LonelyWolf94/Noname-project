@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class User{
 	private String name;
 	private String password;
@@ -11,4 +13,13 @@ public class User{
 	public String toString(){
 		return "" + this.name;
 	}
+	
+	public String getName(){
+		return name;
+	}
+	
+	public String getPassword(){
+		return password;
+	}
 }
+
