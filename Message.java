@@ -1,19 +1,19 @@
 public class Message{
-	User fromUser;
-	User toUser;
+	User userSender;
+	User userReciever;
 	String message;
 	
-	public Message(User fromUser, User toUser, String message){
-		this.fromUser = fromUser;
-		this.toUser = toUser;
+	public Message(User userSender, User userReciever, String message){
+		this.userSender = userSender;
+		this.userReciever = userReciever;
 		this.message = message;
 	}
 	
 	@Override
 	public String toString(){
 		String string = new String();
-		return string + "Message from " + fromUser.getName() +
-		" to " + toUser.getName() + " \n" +
+		return string + "Message from " + userSender.getName() +
+		" to " + userReciever.getName() + " \n" +
 		message;
 	}
 }

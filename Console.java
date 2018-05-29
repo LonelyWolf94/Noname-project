@@ -4,9 +4,9 @@ public class Console{
 	//Этот класс будет служить для работы с консолью.
 	Kernel kernel = new Kernel();
 	private byte numberOfCommand = 0;
+	private BufferedReader buffReader = new BufferedReader(new InputStreamReader(System.in));
 	
-	public void doIt(){
-		BufferedReader buffReader = new BufferedReader(new InputStreamReader(System.in));
+	public void doIt(){		
 		System.out.println("Welcome to my program!");
 		System.out.println("Please login. Enter your name and password.");
 		kernel.initial();
@@ -27,7 +27,7 @@ public class Console{
 		}			
 	}
 	
-	private void doCommand(byte command){
+	private void doCommand(byte command) throws IOException{
 		switch(command){
 			case -1:
 				System.out.println("Bye! Have a nice day!");
@@ -41,10 +41,22 @@ public class Console{
 				System.out.print("List of commands:\n" +
 				"-show users\n" +
 				"-help\n" +
-				"-exit\n");
+				"-exit\n" +
+				"-create message\n" +
+				"-show out messages\n");
 				break;
 			case 3:
 				Users.showUsers();
+				break;
+			case 4:
+				System.out.println("Enter reciever: ");
+				String userReciever = buffReader.readLine();
+				System.out.println("Enter message: ");
+				String message = buffReader.readLine();
+				Kernel.currentUser.createMessage(userReciever, message);
+				break;
+			case 5:
+				Kernel.currentUser.showAllOutMessages();
 				break;
 		}
 	}
@@ -64,6 +76,12 @@ public class Console{
 				break;
 			case "show users":
 				numberOfCommand = 3;
+				break;
+			case "create message":
+				numberOfCommand = 4;
+				break;
+			case "show out messages":
+				numberOfCommand = 5;
 				break;
 		}
 		
