@@ -50,10 +50,15 @@ public class Console{
 				break;
 			case 4:
 				System.out.println("Enter reciever: ");
-				String userReciever = buffReader.readLine();
-				System.out.println("Enter message: ");
-				String message = buffReader.readLine();
-				Kernel.currentUser.createMessage(userReciever, message);
+				String strUserReciever = buffReader.readLine();
+				User userReciever = User.validateUserFromString(strUserReciever);
+				if(userReciever == null){
+					System.out.println("There is no user reciever with this name.");
+				} else {
+					System.out.println("Enter message: ");
+					String message = buffReader.readLine();
+					Kernel.currentUser.createMessage(userReciever, message);
+				}
 				break;
 			case 5:
 				Kernel.currentUser.showAllOutMessages();
